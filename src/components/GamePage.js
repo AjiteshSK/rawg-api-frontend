@@ -14,16 +14,19 @@ const GamePage = () => {
         const fetchedGame = await axios.get(
           `https://tivix-assignment.herokuapp.com/get/${id}`
         );
-        console.log('fetchedGame', fetchedGame);
         setGame(fetchedGame.data);
       } catch (error) {
         setAxiosError(error.response.data.message);
-        console.log('ERROR in Gamepage fetch', error);
+        console.log('Error in Gamepage fetch', error);
       }
     })();
-
-    document.title = game.name;
   }, []);
+
+  useEffect(() => {
+    if (game) {
+      document.title = game.name;
+    }
+  }, [game]);
 
   if (axiosError) return <div>{axiosError}</div>;
   if (!game)

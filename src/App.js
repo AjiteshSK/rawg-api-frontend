@@ -3,7 +3,6 @@ import Container from './components/Container.js';
 import GamePage from './components/GamePage.js';
 
 function App() {
-  console.log('CHECKS');
   return (
     <div className='App'>
       <BrowserRouter>
