@@ -10,7 +10,7 @@ const Container = () => {
     (async () => {
       try {
         const fetchedGames = await axios.get(
-          `https://tivix-assignment.herokuapp.com//get`
+          `https://tivix-assignment.herokuapp.com/get`
         );
         setGames(fetchedGames.data);
       } catch (error) {

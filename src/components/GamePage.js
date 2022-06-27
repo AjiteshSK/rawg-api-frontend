@@ -12,7 +12,7 @@ const GamePage = () => {
     (async () => {
       try {
         const fetchedGame = await axios.get(
-          `https://tivix-assignment.herokuapp.com//get/${id}`
+          `https://tivix-assignment.herokuapp.com/get/${id}`
         );
         console.log('fetchedGame', fetchedGame);
         setGame(fetchedGame.data);
