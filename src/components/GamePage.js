@@ -16,12 +16,12 @@ const GamePage = () => {
         );
         console.log('fetchedGame', fetchedGame);
         setGame(fetchedGame.data);
+        document.title = game.name;
       } catch (error) {
         setAxiosError(error.response.data.message);
         console.log('ERROR in Gamepage fetch', error);
       }
     })();
-    document.title = game.name;
   }, []);
 
   if (axiosError) return <div>{axiosError}</div>;
