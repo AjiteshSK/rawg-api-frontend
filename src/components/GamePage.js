@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import GameCardSkeleton from './GameCardSkeleton';
 import axios from 'axios';
 
 const GamePage = () => {
-  const [game, setGame] = useState({});
+  const [game, setGame] = useState(null);
   const [axiosError, setAxiosError] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
     (async () => {
       try {
-        const fetchedGame = await axios.get(`http://localhost:8080/get/${id}`);
+        const fetchedGame = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/get/${id}`
+        );
         console.log('fetchedGame', fetchedGame);
         setGame(fetchedGame.data);
       } catch (error) {
@@ -21,10 +24,19 @@ const GamePage = () => {
   }, []);
 
   if (axiosError) return <div>{axiosError}</div>;
-
+  if (!game)
+    return (
+      <div>
+        <GameCardSkeleton />
+      </div>
+    );
   return (
     <div className='w-full h-full p-10'>
-      <img className='rounded-t-lg h-1/5 w-full' src={game.background_image} />
+      <img
+        className='rounded-t-lg h-1/5 max-h-96 w-full'
+        src={game.background_image}
+        alt={game.name}
+      />
 
       <h3 className='mb-2 mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white '>
         {game.name}

@@ -5,7 +5,6 @@ const GameCard = ({ game }) => {
 
   const generateBadges = () => {
     const { genres } = game;
-    console.log('GENEREATEBADEGE', genres);
     return genres.map((genre) => {
       const { name } = genre;
       return (
