@@ -21,6 +21,7 @@ const GamePage = () => {
         console.log('ERROR in Gamepage fetch', error);
       }
     })();
+    document.title = game.name;
   }, []);
 
   if (axiosError) return <div>{axiosError}</div>;
